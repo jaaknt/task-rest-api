@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1000
+      author: jaak.niit
+      changes:
+        - sqlFile:
+            endDelimiter: "@@"
+            path: db/changelog/1000-create-trigger.sql
+  - changeSet:
+      id: 1001
+      author: jaak.niit
+      changes:
+        - sqlFile:
+            path: db/changelog/1001-create-table-user.sql
+  - changeSet:
+      id: 1002
+      author: jaak.niit
+      changes:
+        - sqlFile:
+            path: db/changelog/1002-create-table-task.sql
