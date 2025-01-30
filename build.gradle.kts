@@ -37,13 +37,22 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.mockito:mockito-core:4.8.0")
+    testImplementation("org.mockito:mockito-inline:4.8.0")
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
 
+    jvmArgs(
+        "-javaagent:${configurations.testRuntimeClasspath.get().filter { it.name.contains("byte-buddy-agent") }.first()}"
+    )
     testLogging {
         events("passed", "skipped", "failed")
     }
 
+    reports {
+        junitXml.required.set(true)
+        html.required.set(true)
+    }
 }
