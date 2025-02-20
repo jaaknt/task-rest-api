@@ -1,9 +1,7 @@
 package com.multimarketing.taskrestapi.service;
 
 import com.multimarketing.taskrestapi.constants.ErrorMessages;
-import com.multimarketing.taskrestapi.enums.TaskStatus;
 import com.multimarketing.taskrestapi.exception.ApiException;
-import com.multimarketing.taskrestapi.model.Task;
 import com.multimarketing.taskrestapi.model.User;
 import com.multimarketing.taskrestapi.repository.UserRepository;
 import com.multimarketing.taskrestapi.service.impl.UserServiceImpl;
@@ -14,8 +12,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
-import java.time.Clock;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,9 +101,7 @@ public class UserServiceTest {
 
         when(userRepository.findById(id)).thenReturn(Optional.empty());
 
-        ApiException apiException = assertThrows(ApiException.class, () -> {
-            userService.findUserById(id);
-        });
+        ApiException apiException = assertThrows(ApiException.class, () -> userService.findUserById(id));
 
         assertEquals(ErrorMessages.NOT_FOUND_USER_BY_ID + id, apiException.getMessage());
         assertEquals(HttpStatus.NOT_FOUND, apiException.getHttpStatus());
