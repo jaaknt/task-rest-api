@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -38,9 +39,10 @@ public class TaskController {
     }
 
     @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     @Operation(summary = "Create a new task")
-    @ApiResponse(responseCode = "200", description = "Task successfully created")
-    public Task createTask(@RequestBody Task task) {
+    @ApiResponse(responseCode = "201", description = "Task successfully created")
+    public Task createTask(@Valid @RequestBody Task task) {
         return taskService.createTask(task);
     }
 
@@ -50,7 +52,7 @@ public class TaskController {
             @ApiResponse(responseCode = "200", description = "Task successfully updated"),
             @ApiResponse(responseCode = "404", description = "ID not found")
     })
-    public Task updateTask(@PathVariable Long id, @RequestBody Task task) {
+    public Task updateTask(@PathVariable Long id, @Valid @RequestBody Task task) {
         return taskService.updateTask(id, task);
     }
 

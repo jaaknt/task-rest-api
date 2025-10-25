@@ -56,7 +56,7 @@ com.multimarketing.taskrestapi/
 ├── config/           - SpringDoc/OpenAPI configuration
 ├── constants/        - Error messages and application constants
 ├── controller/       - REST controllers (TaskController, UserController)
-├── enums/           - Enums (TaskStatus: PENDING, IN_PROGRESS, COMPLETED)
+├── enums/           - Enums (TaskStatus: CREATED, IN_PROGRESS, COMPLETED, CANCELLED)
 ├── exception/       - Custom exceptions and GlobalExceptionHandler
 ├── model/           - JPA entities (Task, User)
 ├── repository/      - Spring Data JPA repositories

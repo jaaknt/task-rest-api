@@ -2,6 +2,8 @@ package com.multimarketing.taskrestapi.model;
 
 import com.multimarketing.taskrestapi.enums.TaskStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,12 +15,14 @@ public @Data class Task {
     @SequenceGenerator(name = "task_seq", sequenceName = "task_id_seq", allocationSize = 1)
     private Long id;
 
+    @NotBlank(message = "Title is required")
     @Column(name = "title")
     private String title;
 
     @Column(name = "description")
     private String description;
 
+    @NotNull(message = "Status is required")
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private TaskStatus status;
