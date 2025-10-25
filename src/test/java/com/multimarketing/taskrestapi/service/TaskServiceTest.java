@@ -14,14 +14,14 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
 import java.time.Clock;
-import java.time.Instant;
+// import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
+// import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+// import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +41,7 @@ public class TaskServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        id  = 99L;
+        id = 99L;
         task = new Task();
         task.setId(id);
         task.setTitle("Sample Task");
@@ -56,7 +56,6 @@ public class TaskServiceTest {
         repositoryTask.setDueDate(LocalDateTime.now(Clock.systemUTC()));
 
     }
-
 
     @Test
     void testCreateTask_whenCreateTask_shouldReturnTask() {
