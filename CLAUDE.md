@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Task REST API is a Spring Boot 3.4.2 application providing REST endpoints for task and user management. The application uses PostgreSQL (via Docker) for persistence, Liquibase for database migrations, and Lombok for boilerplate reduction.
+Task REST API is a Spring Boot 3.5.7 application providing REST endpoints for task and user management. The application uses PostgreSQL (via Docker) for persistence, Liquibase for database migrations, and Lombok for boilerplate reduction.
 
-**Technology Stack**: Java 21, Spring Boot 3.4.2, Gradle (Kotlin DSL), PostgreSQL 17, Liquibase, Lombok, SpringDoc OpenAPI
+**Technology Stack**: Java 21, Spring Boot 3.5.7, Gradle (Kotlin DSL), PostgreSQL 17, Liquibase, Lombok, SpringDoc OpenAPI
 
 ## Essential Commands
 
@@ -88,7 +88,7 @@ com.multimarketing.taskrestapi/
 **application.properties Important Settings**:
 - `spring.jpa.hibernate.ddl-auto=validate` - Schema changes require Liquibase migrations
 - `spring.jpa.properties.hibernate.default_schema=eagle` - All tables in eagle schema
-- `spring.datasource.url` points to localhost:5432 (NOT 5433 - connect inside Docker network)
+- `spring.datasource.url` points to localhost:5433 (Docker container port mapping)
 
 **Lombok Usage**:
 - `@Data` generates getters, setters, toString, equals, hashCode
@@ -108,11 +108,11 @@ com.multimarketing.taskrestapi/
 
 ## Database Port Configuration
 
-**Critical**: Note the port mapping discrepancy:
-- Docker exposes PostgreSQL on host port **5433** (to avoid conflicts)
-- Application connects to **5432** (expects local PostgreSQL or use `localhost:5433` for external connections)
-- When running app via `./gradlew bootRun`, ensure `application.properties` datasource URL matches your setup
-- Default config assumes PostgreSQL running on standard port 5432
+**Critical**: Port configuration details:
+- Docker exposes PostgreSQL on host port **5433** (to avoid conflicts with other PostgreSQL instances)
+- Application configured to connect to **localhost:5433** in `application.properties`
+- Container internal port is 5432 (standard PostgreSQL port)
+- If you have multiple PostgreSQL containers running, ensure you're connecting to the correct port
 
 ## Common Development Patterns
 

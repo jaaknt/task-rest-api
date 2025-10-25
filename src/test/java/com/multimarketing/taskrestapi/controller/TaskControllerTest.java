@@ -99,7 +99,7 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$.title").value(repositoryTask.getTitle()))
                 .andExpect(jsonPath("$.description").value(repositoryTask.getDescription()))
                 .andExpect(jsonPath("$.status").value(repositoryTask.getStatus().toString()))
-                .andExpect(jsonPath("$.dueDate").value(repositoryTask.getDueDate().toString().substring(0,27)))
+                .andExpect(jsonPath("$.dueDate").value(repositoryTask.getDueDate().toString()))
         ;
 
         verify(taskService).updateTask(id, task);
